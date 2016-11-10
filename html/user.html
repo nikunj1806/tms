@@ -1,0 +1,49 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+
+        <div class="bg-light lter b-b wrapper-md">
+            <a href="#/user-profile" class="btn btn-success pull-right"> Add User</a>
+            <h1 class="m-n font-thin h3">User Management</h1>  
+        </div>
+
+
+        <div class="wrapper-md">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    User Management
+                </div>
+
+                <div>
+                    <table  class="table m-b-none default footable-loaded footable" datatable="ng" >
+                        <thead>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>DOB</th>
+                            <th>User Status</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in userlist">
+                                <td>{{user.iResourceNumber}}</td>
+                                <td>{{user.vFirstName}}</td>
+                                <td>{{user.vLastName}}</td>
+                                <td>{{user.vEmailAddress}}</td>
+                                <td>{{user.dtBirthDate| dateFormat}}</td>
+                                <td>{{user.is_active}}</td>
+                                <td><a href="#/user-profile/{{user.iUserId}}" title="edit"><i class="fa fa-edit"></i></a> / <a href="javascript:void(0)" ng-click="deleteUser(user.iUserId)" title="delete"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>

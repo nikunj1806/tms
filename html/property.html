@@ -1,0 +1,118 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard" id="w4" ng-stepform="dynamic">
+
+                <div class="panel-body">
+                    <div class="wizard-progress wizard-progress-lg">
+                        <div class="steps-progress">
+                            <div class="progress-indicator"></div>
+                        </div>
+
+                        <ul class="wizard-steps">
+                            <li ng-if="uType == '1'">
+                                <a href="#/user-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Communication</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/client-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Basic Information</a>
+                            </li>
+                            <li ng-if="uType == '1'">
+                                <a href="#/calender" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Calender</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/contact-person" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Contact Person</a>
+                            </li>
+                            <li class="active">
+                                <a href="#/properties" data-target="#w4-tab3" data-toggle="tab"><span>3</span>Properties</a>
+                            </li>
+                            <li>
+                                <a href="#/price-list" data-target="#w4-tab5" data-toggle="tab"><span>4</span>Price List</a>
+                            </li>
+                            <li>
+                                <a href="#/payment" data-target="#w4-tab6" data-toggle="tab"><span>5</span>Payment information</a>
+                            </li>
+                            <li>
+                                <a href="#/user-task" data-target="#w4-tab7" data-toggle="tab"><span>6</span>Task</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- <form class="form-horizontal" novalidate="novalidate"> -->
+
+
+                    <div class="tab-content">
+                        <div id="w4-tab3" class="tab-pane active">
+                            <!--   TAB3 -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Properties</div>
+                                        <div class="panel-body">
+                                            <form id="user-property">
+                                                <div class="col-sm-12">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input select2-property id="property-index" type="text" name="prop" ng-model="propertyData.property_id" class="form-control" ng-change="loadValue(propertyData.property_id, 'property-value')" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3" ng-show="show_value">
+                                                        <div class="form-group">
+                                                            <input id="property-value" type="text" name="values" ng-model="propertyData.value_id" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3" ng-show="show_value">
+                                                        <button type="button" class="btn btn-primary" ng-click="saveProperty('user-property');">OK</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Properties List</div>
+                                        <div class="panel-body">
+                                            <table  class="table m-b-none default footable-loaded footable" >
+                                                <thead>
+                                                <th>#</th>
+                                                <th>Property Name</th>
+                                                <th>Values</th>
+                                                <th>Action</th>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="t in propList">
+                                                        <td ng-bind="$index + 1"></td>
+                                                        <td ng-bind="t.property_name"></td>
+                                                        <td ng-bind="t.values_names"></td>
+                                                        <td><a href="javascript:void(0)" ng-click="getProperty(t.id, 'property-value')" title="edit"><i class="fa fa-edit"></i></a> / <a href="javascript:void(0)" ng-click="deleteProperty(t.id)" title="delete"><i class="fa fa-trash"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   TAB3 -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>
+<script language="JavaScript">
+    var client = new ZeroClipboard(document.getElementById("vPass"));
+
+    client.on("ready", function(readyEvent) {
+
+        client.on("aftercopy", function(event) {
+
+            alert("Copied text to clipboard: " + event.data["text/plain"]);
+        });
+    });
+</script>

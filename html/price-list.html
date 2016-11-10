@@ -1,0 +1,71 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard" id="w4" ng-stepform="dynamic">
+
+                <div class="panel-body">
+                    <div class="wizard-progress wizard-progress-lg">
+                        <div class="steps-progress">
+                            <div class="progress-indicator"></div>
+                        </div>
+
+                        <ul class="wizard-steps">
+                            <li ng-if="uType == '1'">
+                                <a href="#/user-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Communication</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/client-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Basic Information</a>
+                            </li>
+                            <li ng-if="uType == '1'">
+                                <a href="#/calender" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Calender</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/contact-person" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Contact Person</a>
+                            </li>
+                            <li>
+                                <a href="#/properties" data-target="#w4-tab3" data-toggle="tab"><span>3</span>Properties</a>
+                            </li>
+                            <li class="active">
+                                <a href="#/price-list" data-target="#w4-tab5" data-toggle="tab"><span>4</span>Price List</a>
+                            </li>
+                            <li >
+                                <a href="#/payment" data-target="#w4-tab6" data-toggle="tab"><span>5</span>Payment information</a>
+                            </li>
+                            <li>
+                                <a href="#/user-task" data-target="#w4-tab7" data-toggle="tab"><span>6</span>Task</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="w4-tab3" class="tab-pane active">
+                            <form id="client-profile">
+                                <!--   TAB1 -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Price List</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <h1>Page Under construction</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--   TAB1 -->
+                                
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>

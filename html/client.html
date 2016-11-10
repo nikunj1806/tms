@@ -1,0 +1,45 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+
+        <div class="bg-light lter b-b wrapper-md">
+            <a href="#/client-profile" class="btn btn-success pull-right"> Add Client</a>
+            <h1 class="m-n font-thin h3">Client Management</h1>  
+        </div>
+
+
+        <div class="wrapper-md">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    User Management
+                </div>
+
+                <div class="table-responsive">
+                    <table  class="table table-striped m-b-none" datatable="ng" >
+                        <thead>
+                        <th>#</th>
+                        <th>Client Name</th>
+                        <th>Email Address</th>
+                        <th>Activation</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="client in clientlist">
+                                <td>{{client.vClientNumber}}</td>
+                                <td>{{client.vClientName}}</td>
+                                <td>{{client.vEmail}}</td>
+                                <td>{{client.vStatus}}</td>
+                                <td><a href="#/edit-client/{{client.iClientId}}" ><i class="fa fa-edit" title="edit"></i></a> / <a href="javascript:void(0)" ng-click="deleteUser(client.iClientId)"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>

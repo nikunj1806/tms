@@ -1,0 +1,81 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard">
+
+                <div class="panel-body">
+
+                    <form id="user-type-form">
+                        <!--   TAB1 -->
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">Currency Master</div>
+                                <div class="panel-body">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Country Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter Country Name" name="country_name" ng-model="currency.country_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Currency code</label>
+                                                <input type="text" name="currency_code" class="form-control" placeholder="Enter Currency code"  ng-model="currency.currency_code" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label class="i-checks i-checks-sm" style="padding-top: 20px;">
+                                                    <input type="checkbox" name="is_active" ng-true-value="1" ng-false-value="0" ng-model="currency.is_active" ng-checked="currency.is_active == 1">
+                                                    <i></i>
+                                                    Active(check to active)
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+
+                                    <button class="btn btn-primary" ng-click="save('user-type-form');">Save</button>
+                                </div>
+                            </div>
+                            <table  class="table m-b-none default footable-loaded footable" >
+                                <thead>
+                                <th>#</th>
+                                <th>Country Name</th>
+                                <th>Currency Code</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="t in currencyData">
+                                        <td ng-bind="$index + 1"></td>
+                                        <td ng-bind="t.country_name"></td>
+                                        <td ng-bind="t.currency_code"></td>
+                                        <td ng-if="t.is_active == '1'"><span class="label bg-success" title="active">Active</span></td>
+                                        <td ng-if="t.is_active == '0'"><span class="label bg-danger" title="Inactive">Inactive</span></td>
+                                        <td><a href="javascript:void(0)" ng-click="getType(t.currency_id);" title="edit"><i class="fa fa-edit"></i></a>  / <a href="javascript:void(0)" ng-click="deleteModel(t.currency_id)" title="delete"><i class="fa fa-trash"></i></a></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+
+
+                    </form>
+
+
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>

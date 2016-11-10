@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <meta charset="utf-8" />
+        <title>TMS | Translation Management System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+        <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/animate.css/animate.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/simple-line-icons/css/simple-line-icons.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/bootstrap-datepiker/css/datepicker3.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/select2/select2.min.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/plugins/integration/bootstrap/3/dataTables.bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/datetimepicker/bootstrap-datetimepicker.css" type="text/css" />
+        <link rel="stylesheet" href="assets/css/font.css" type="text/css" />
+<!--        <link rel="stylesheet" href="assets/vendor/calender/calendar.css" type="text/css" />-->
+        <link rel="stylesheet" href="assets/vendor/calender/fullcalendar.css" type="text/css" />
+        <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+        <link rel="stylesheet" href="assets/css/default.css" type="text/css" />
+        <link rel="stylesheet" href="assets/vendor/bootstrap-wizard/theme.css" type="text/css" />
+        <link rel="stylesheet" href="assets/css/theme.custom.css" type="text/css" />
+
+    </head>
+    <body>
+        <div class="app app-header-fixed">
+            <div ng-view></div>
+        </div>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAT7p_WkasZeLlF25UIlr2_h0EJr8K7AdE&libraries=places&sensor=false"></script>
+        <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="assets/js/moment.js"></script>
+        <script src="assets/js/jquery-ui.min.js"></script>
+        <script src="assets/vendor/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="assets/vendor/select2/select2.min.js"></script>
+        <script src="assets/js/ui-load.js"></script>
+        <script src="assets/js/ui-jp.config.js"></script>
+        <script src="assets/js/ui-jp.js"></script>
+        <script src="assets/js/ui-nav.js"></script>
+        <script src="assets/js/ui-toggle.js"></script>
+        <script src="assets/js/noty/packaged/jquery.noty.packaged.js"></script>
+        <script src="assets/js/jquery-validate/jquery.validate.min.js"></script>
+        <script src="assets/js/jquery-validate/additional-methods.min.js"></script>
+        <script src="assets/js/jquery-validate/validate.js"></script>
+        <script src="assets/vendor/bootstrap-datepiker/js/bootstrap-datepicker.js"></script>
+        <script src="assets/vendor/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+        <script src="assets/vendor/bootstrap-wizard/custom.js"></script>
+        <script src="assets/vendor/datatables/media/js/jquery.dataTables.js"></script>
+        <script src="assets/vendor/datatables/media/js/dataTableSetting.js"></script>
+        <script src="assets/vendor/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="assets/vendor/boot-box/bootbox.min.js"></script>
+        <script src="assets/js/ZeroClipboard.js"></script>
+
+        <script src="assets/vendor/angular/angular.js"></script>
+        <script src="assets/vendor/angular-route/angular-route.js"></script>
+        <script src="assets/vendor/angular-animate/angular-animate.js"></script>
+        <script src="assets/vendor/angular-resource/angular-resource.js"></script>
+        <script src="assets/vendor/angular-sanitize/angular-sanitize.js"></script>
+        <script src="assets/vendor/angular-strap/dist/angular-strap.js"></script>
+        <script src="assets/vendor/angular-strap/dist/angular-strap.tpl.min.js"></script>
+        <script src="assets/vendor/ui-bootstrap-tpls-0.12.0.js"></script>
+        <script src="assets/vendor/ngTags/ng-tags-input.min.js"></script>
+        <script src="assets/vendor/angular-loader/spin.min.js"></script>
+        <script src="assets/vendor/angular-loader/angular-spiner.min.js"></script>
+        <script src="assets/vendor/angular-loader/loading-spiner.js"></script>
+        
+        
+        <script src="assets/src/angular-datatables.js"></script>
+        <script src="assets/src/angular-datatables.util.js"></script>
+        <script src="assets/src/angular-datatables.options.js"></script>
+        <script src="assets/src/angular-datatables.instances.js"></script>
+        <script src="assets/src/angular-datatables.factory.js"></script>
+        <script src="assets/src/angular-datatables.renderer.js"></script>
+        <script src="assets/src/angular-datatables.directive.js"></script>
+
+        <!--------- calender ----------------->
+        <script src="assets/vendor/calender/fullcalendar.js"></script>
+        <script src="assets/vendor/calender/calendar.js"></script>
+
+        <script src="app/app.js"></script>
+        <script src="app/services.js"></script>
+        <script src="app/directives.js"></script>
+        <script src="app/filter.js"></script>
+
+        <script src="controllers/controller.js"></script>
+
+
+        <!--        <script>
+                    (function(i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r;
+                        i[r] = i[r] || function() {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                        a = s.createElement(o),
+                                m = s.getElementsByTagName(o)[0];
+                        a.async = 1;
+                        a.src = g;
+                        m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        
+                    ga('create', 'UA-68082644-1', 'auto');
+                    ga('send', 'pageview');
+        
+                </script>-->
+    </body>
+</html>

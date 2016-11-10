@@ -1,0 +1,191 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard" id="w4" ng-stepform="dynamic">
+
+                <div class="panel-body">
+                    <div class="wizard-progress wizard-progress-lg">
+                        <div class="steps-progress">
+                            <div class="progress-indicator"></div>
+                        </div>
+
+                        <ul class="wizard-steps">
+                            <li ng-if="uType == '1'">
+                                <a href="#/user-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Communication</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/client-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Basic Information</a>
+                            </li>
+                            <li ng-if="uType == '1'">
+                                <a href="#/calender" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Calender</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/contact-person" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Contact Person</a>
+                            </li>
+                            <li>
+                                <a href="#/properties" data-target="#w4-tab3" data-toggle="tab"><span>3</span>Properties</a>
+                            </li>
+                            <li>
+                                <a href="#/price-list" data-target="#w4-tab5" data-toggle="tab"><span>4</span>Price List</a>
+                            </li>
+                            <li  class="active">
+                                <a href="#/payment" data-target="#w4-tab6" data-toggle="tab"><span>5</span>Payment information</a>
+                            </li>
+                            <li>
+                                <a href="#/user-task" data-target="#w4-tab7" data-toggle="tab"><span>6</span>Task</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="w4-tab6" class="tab-pane active">
+                            <!--   TAB6 -->
+                            <form id="payment_form">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Account Information</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Sales TAX ID (VAT number)</label>
+                                                        <input type="text" class="form-control"  name="tax_id" ng-model="payment.tax_id" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Preselected Tax</label>
+                                                        <select class="form-control m-b" name="preselected_tax" ng-model="payment.preselected_tax" required>
+                                                            <option>tax 1(0.25%)</option>
+                                                            <option>tax 1(0.25%)</option>
+                                                            <option>tax 1,2</option>
+                                                        </select>  
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Taxation Type</label>
+                                                        <select class="form-control m-b" name="tax_type" ng-model="payment.tax_type" required>
+                                                            <option>EU without VAT</option>
+                                                            <option>EU with VAT</option>
+                                                            <option>non-taxable</option>
+                                                        </select>  
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Payment Target day(s)</label>
+                                                        <input type="number" class="form-control"  name="target_days" ng-model="payment.target_days" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Grade period for reminder 1</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control"  name="reminder1" ng-model="payment.reminder1" required >
+                                                            <span class="input-group-addon">day(s)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Grade period for reminder 2</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" name="reminder2" ng-model="payment.reminder2" required >
+                                                            <span class="input-group-addon">day(s)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Grade period for reminder 3</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control"  name="reminder3" ng-model="payment.reminder3" required >
+                                                            <span class="input-group-addon">day(s)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Currency</label>
+                                                        <input type="text" select2-currency class="form-control" name="currency" ng-model="payment.currency" required />
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Memo for Payables</label>
+                                                        <textarea name="memos" ng-model="payment.memos" class="form-control" rows="12"></textarea>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Bank</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Payment Method</label>
+                                                        <select class="form-control m-b" name="payment_method" ng-model="bank.payment_method" required>
+                                                            <option>Bank Transfer</option>
+                                                            <option>Paypal</option>
+                                                            <option>Cash</option>
+                                                            <option>Check</option>
+                                                            <option>Credit Card</option>
+                                                            <option>Debit Card</option>
+                                                            <option>Skrill</option>
+                                                        </select> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Bank Name</label>
+                                                        <input type="text" class="form-control"  name="bank_name" ng-model="bank.bank_name" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Bank Code</label>
+                                                        <input type="text" class="form-control"  name="bank_code" ng-model="bank.bank_code" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <input type="text" class="form-control"  name="address" ng-model="bank.address" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Account Number</label>
+                                                        <input type="text" class="form-control" name="tax_id" ng-model="bank.acc_number" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Account Holder</label>
+                                                        <input type="text" class="form-control"  name="holder_name" ng-model="bank.holder_name" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>IBAN</label>
+                                                        <input type="text" class="form-control"  name="iban" ng-model="bank.iban" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>SWIFT/BIC</label>
+                                                        <input type="text" class="form-control"  name="bic" ng-model="bank.bic" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Sort Code</label>
+                                                        <input type="text" class="form-control"  name="sort_code" ng-model="bank.sort_code" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>PayPal address</label>
+                                                        <input type="text" class="form-control"  name="paypal_address" ng-model="bank.paypal_address" required >
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <ul class="pager">
+
+                                    <li class="next">
+                                        <a class="btn btn-primary" ng-click="savePayment('payment_form');">Save & Next <i class="fa fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <!--   TAB6 -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>
+

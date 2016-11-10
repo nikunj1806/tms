@@ -1,0 +1,96 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard">
+
+                <div class="panel-body">
+
+                    <form id="user-type-form">
+                        <!--   TAB1 -->
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">User Type</div>
+                                <div class="panel-body">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>User Type</label>
+                                                <input type="text" class="form-control" placeholder="Enter User Type" name="vFirstName" ng-model="type.vType" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Resource Type</label>
+                                                <select class="form-control m-b" name="iResourceType" ng-model="type.iResourceType" required>
+                                                    <option value="1">External</option>
+                                                    <option value="2">Internal</option>
+
+                                                </select>                     
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="checkbox">
+                                                <label class="i-checks i-checks-sm" style="padding-top: 20px;">
+                                                    <input type="checkbox" name="iResourceType" ng-true-value="1" ng-false-value="0" ng-model="type.iDefault" ng-checked="type.iDefault == 1">
+                                                    <i></i>
+                                                    Default Type(check to show)
+                                                </label>
+                                            </div>
+                                      
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <select name="eTypeStatus" class="form-control m-b"  ng-model="type.eTypeStatus" required>
+                                                    <option>Active</option>
+                                                    <option>Inactive</option>
+
+                                                </select>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+
+                                    <button ng-if="type.iTypeId == '' || type.iTypeId == undefined" class="btn btn-primary" ng-click="saveType('user-type-form');">Save</button>
+                                    <button ng-if="type.iTypeId != '' && type.iTypeId != undefined" class="btn btn-primary" ng-click="updateType('user-type-form', type.iTypeId);">Update</button>
+                                </div>
+                            </div>
+                            <table  class="table m-b-none default footable-loaded footable" >
+                                <thead>
+                                <th>#</th>
+                                <th>User Type</th>
+                                <th>Resource Type</th>
+                                <th>Status</th>
+<!--                                <th>Action</th>-->
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="t in usertype">
+                                        <td ng-bind="$index + 1"></td>
+                                        <td ng-bind="t.vType"></td>
+                                        <td ng-if="t.iResourceType == '1'">External</td>
+                                        <td ng-if="t.iResourceType == '2'">Internal</td>
+                                        <td ng-bind="t.eTypeStatus"></td>
+<!--                                        <td><a href="javascript:void(0)" ng-click="getType(t.iTypeId)"><i class="fa fa-edit"></i></a> / <a href="javascript:void(0)" ng-click="deleteType(t.iTypeId)"><i class="fa fa-trash"></i></a></td>-->
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+
+
+                    </form>
+
+
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>

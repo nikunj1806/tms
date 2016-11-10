@@ -1,0 +1,195 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard" id="w4" ng-stepform="dynamic">
+
+                <div class="panel-body">
+                    <div class="wizard-progress wizard-progress-lg">
+                        <div class="steps-progress">
+                            <div class="progress-indicator"></div>
+                        </div>
+
+                        <ul class="wizard-steps">
+                            <li ng-if="uType == '1'">
+                                <a href="#/user-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Communication</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/client-profile" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Basic Information</a>
+                            </li>
+                            <li ng-if="uType == '1'">
+                                <a href="#/calender" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Calender</a>
+                            </li>
+                            <li ng-if="uType == '2'">
+                                <a href="#/contact-person" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Contact Person</a>
+                            </li>
+                            <li>
+                                <a href="#/properties" data-target="#w4-tab3" data-toggle="tab"><span>3</span>Properties</a>
+                            </li>
+                            <li>
+                                <a href="#/properties" data-target="#w4-tab5" data-toggle="tab"><span>4</span>Price List</a>
+                            </li>
+                            <li>
+                                <a href="#/payment" data-target="#w4-tab6" data-toggle="tab"><span>5</span>Payment information</a>
+                            </li>
+                            <li class="active">
+                                <a href="#/user-task" data-target="#w4-tab7" data-toggle="tab"><span>6</span>Task</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="w4-tab7" class="tab-pane active">
+                            <!--   TAB7 -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Task</div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-4">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label>Print resource history</label>
+                                                        <select class="form-control m-b" name="currency" ng-model="resource_history" required>
+                                                            <option>complete Resource history</option>
+                                                            <option>CAD</option>
+                                                            <option>USD</option>
+                                                            <option>GBP</option>
+                                                            <option>NOK</option>
+                                                            <option>BGN</option>
+                                                        </select> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-primary btn-inline" value="OK">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form id="task_form">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Task Form</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Status</label>
+                                                            <select class="form-control m-b" name="status" ng-model="task.iStatus" required>
+                                                                <option>completed</option>
+                                                                <option>pending</option>
+
+                                                            </select> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Due</label>
+                                                            <input ng-datetimepicker id="due_date" type="text" ng-model="task.vDue" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Task Type</label>
+                                                            <input id="vTaskType" type="text" select2-tasktype class="form-control" name="task_type" ng-model="task.vTaskType" required />
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label> Contact Persons</label>
+                                                            <input id="iContact" select2-client type="text" name="contact_person" class="form-control" ng-model="task.iContact" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Person Responsible</label>
+                                                            <input id="iPersonResponsible" select2-user name="person_responsible" type="text" class="form-control" ng-model="task.iPersonResponsible" required/>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Priority</label>
+                                                            <select class="form-control m-b" name="priority" ng-model="task.vPriority" required>
+                                                                <option>Low</option>
+                                                                <option>Normal</option>
+                                                                <option>High</option>
+                                                            </select> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-12 memos">
+                                                        <div class="form-group">
+                                                            <label>Memo</label>
+                                                            <textarea class="form-control" name="memo" ng-model="task.tMemo" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="panel-footer">
+                                                <button class="btn btn-primary" ng-click="saveTask('task_form');">Save</button>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                    <table  class="table m-b-none default footable-loaded footable" >
+                                        <thead>
+                                        <th>#</th>
+                                        <th>Due</th>
+                                        <th>Task Type</th>
+                                        <th>Contact Person</th>
+                                        <th>Person Responsible</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="t in tasklist">
+                                                <td ng-bind="t.iTaskId"></td>
+                                                <td ng-bind="t.vDue"></td>
+                                                <td ng-bind="t.task_type"></td>
+                                                <td ng-bind="t.contact_person"></td>
+                                                <td ng-bind="t.person_responsible"></td>
+                                                <td ng-if="t.vPriority == 'Low'"><span class="label bg-warning" title="completed">Low</span></td>
+                                                <td ng-if="t.vPriority == 'Normal'"><span class="label bg-success" title="completed">Normal</span></td>
+                                                <td ng-if="t.vPriority == 'High'"><span class="label bg-danger" title="pending">High</span></td>
+                                                <td ng-if="t.iStatus=='completed'"><span class="label bg-success" title="completed">Completed</span></td>
+                                                <td ng-if="t.iStatus=='pending'"><span class="label bg-danger" title="pending">Pending</span></td>
+                                                <td><a href="javascript:void(0)" ng-click="getTaskbyId(t.iTaskId)"  title="edit"><i class="fa fa-edit"></i></a> / <a href="javascript:void(0)" ng-click="deleteTask(t.iTaskId)" title="delete"><i class="fa fa-trash"></i></a></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <!--   TAB7 -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>
+<script language="JavaScript">
+    var client = new ZeroClipboard(document.getElementById("vPass"));
+
+    client.on("ready", function(readyEvent) {
+
+        client.on("aftercopy", function(event) {
+
+            alert("Copied text to clipboard: " + event.data["text/plain"]);
+        });
+    });
+</script>

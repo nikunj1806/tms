@@ -1,0 +1,832 @@
+<div class="header" data-ng-include="'html/header.html'"></div>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+
+        <div class="bg-light lter b-b wrapper-md" id="userprofile-ctrl" >
+            <section class="panel form-wizard" id="w4" ng-stepform="dynamic">
+
+                <div class="panel-body">
+                    <div class="wizard-progress wizard-progress-lg">
+                        <div class="steps-progress">
+                            <div class="progress-indicator"></div>
+                        </div>
+
+                        <ul class="wizard-steps">
+                            <li class="active">
+                                <a href="javascript:void(0);" data-target="#w4-tab1" data-toggle="tab"><span>1</span>Communication</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-target="#w4-tab2" data-toggle="tab"><span>2</span>Calender</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-target="#w4-tab3" data-toggle="tab"><span>3</span>Properties</a>
+                            </li>
+                      
+                            <li>
+                                <a href="javascript:void(0);" data-target="#w4-tab5" data-toggle="tab"><span>4</span>Price List</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-target="#w4-tab6" data-toggle="tab"><span>5</span>Payment</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-target="#w4-tab7" data-toggle="tab"><span>6</span>Task</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- <form class="form-horizontal" novalidate="novalidate"> -->
+
+
+                    <div class="tab-content">
+
+                        <div id="w4-tab1" class="tab-pane active">
+                            <form id="userprofileform">
+                                <!--   TAB1 -->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Basic Information</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Resource Type</label>
+                                                        <input type="text" select2-sourcetype class="form-control" name="vResourceType"  ng-model="userprofiledata.vResourceType" ng-change="sourceType(userprofiledata.vResourceType, 'iFkUserTypeId')" required />
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>User Type</label>
+                                                        <input type="text" id="iFkUserTypeId" class="form-control" name="iFkUserTypeId" ng-model="userprofiledata.iFkUserTypeId" ng-disabled="userTypes" />
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input ng-capitalize type="text" class="form-control" name="vFirstName" ng-model="userprofiledata.vFirstName" ng-change="setUsername(userprofiledata.vFirstName)" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input ng-capitalize type="text" class="form-control"  name="vLastName" ng-model="userprofiledata.vLastName" ng-change="setUsername2(userprofiledata.vLastName)" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Gender</label>
+                                                        <input type="text" select2-gender class="form-control" name="iGender"  ng-model="userprofiledata.iGender"  required />
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date of Birth</label>
+                                                        <input type="text" class="form-control" id="dtBirthDate" ng-datepicker name="dtBirthDate" ng-model="userprofiledata.dtBirthDate" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-8">
+                                                            <label>Profile Picture</label>
+                                                            <input type="file"  ng-model="userprofiledata.vProfilePic" ng-file-select="onFileSelect($files)"  required>
+                                                        </div><div class="col-sm-4">
+                                                            <div class="thumb-info mb-md">
+                                                                <img id="new_profile_pic" ng-if="imageSrc != undefined" ng-src="{{imageSrc}}" class="img-thumbnail ng-scope" alt="John Doe">
+                                                                <img id="new_profile_pic" ng-if="imageSrc == undefined" ng-src="assets/img/blank.png" class="img-thumbnail ng-scope" alt="John Doe">
+                                                            </div></div>
+                                                    </div>
+
+                                                    <!-- <button type="submit" class="btn btn-sm btn-primary">Submit</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Contact Information</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" class="form-control" name="vUserName" ng-model="userprofiledata.vUserName" required ng-blur="checkusername()">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+
+                                                        <input type="text" class="form-control" data-clipboard-text="{{userprofiledata.vPassword}}" id="vPass"  name="vPassword" ng-model="userprofiledata.vPassword" required />
+                                                        <span class="valid">Click above to copy Password</span>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Email Address</label>
+                                                        <input type="email" class="form-control"  name="vEmailAddress" ng-model="userprofiledata.vEmailAddress" required ng-blur="checkemailaddress()">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Website</label>
+                                                        <input type="text" class="form-control"  name="website" ng-model="userprofiledata.vWebsite" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Mobile</label>
+                                                        <input type="number" class="form-control" name="iMobile"  ng-model="userprofiledata.iMobile"  required />
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Phone Number</label>
+                                                        <input type="text" class="form-control"  name="vPhoneNumber" ng-model="userprofiledata.vPhoneNumber" required>
+                                                    </div>            
+                                                    <div class="form-group">
+                                                        <label>Skype Name</label>
+                                                        <input type="text" class="form-control"  name="vSkypeName" ng-model="userprofiledata.vSkypeName" required>
+                                                    </div>       
+                                                    <!-- <button type="submit" class="btn btn-sm btn-primary">Submit</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">
+                                                Address 1
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-lg-12">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Address 1</label>
+                                                            <!--                                                            <input type="text" class="form-control" id="autocomplete" name="vAddress1" ng-model="userprofiledata.vAddress1" placeholder="Address1" required>                        -->
+                                                            <input class="form-control" id="address1" ng-model="userprofiledata.vAddress1" details="address1" googleplace/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Street 1</label>
+
+                                                            <input type="text" class="form-control street_number" id="address1_street_number" name="vStreet1" ng-model="vStreet1"  disabled>          
+                                                        </div>              
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Zipcode</label>
+
+                                                            <input type="text" class="form-control postal_code" id="address1_postal_code" name="vZipcode" ng-model="vZipcode1"  disabled> 
+                                                        </div>                       
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">State</label>
+
+                                                            <input type="text" class="form-control locality" id="address1_locality"  name="vState" ng-model="vState1"  disabled>   
+                                                        </div>                     
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Country</label>
+
+                                                            <input type="text" class="form-control country" name="vCountry" id="address1_country" ng-model="vCountry1"  disabled> 
+                                                        </div>                       
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">
+                                                Address 2
+                                            </div>
+                                            <div class="panel-body">
+                                                <!-- <form id="other_info"> -->
+                                                <div class="col-lg-12">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Address 2</label>
+                                                            <input type="text" id="address2" class="form-control" name="vAddress2" ng-model="userprofiledata.vAddress2"  details="address2" googleplace/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Street 2</label>
+
+                                                            <input type="text" class="form-control" id="address2_street_number" name="vStreet2" ng-model="vStreet2"  disabled>          
+                                                        </div>              
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Zipcode</label>
+
+                                                            <input type="text" class="form-control" id="address2_postal_code" name="vZipcode" ng-model="vZipcode2"  disabled> 
+                                                        </div>                       
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">State</label>
+
+                                                            <input type="text" class="form-control" id="address2_locality" name="vState" ng-model="vState2"  disabled>   
+                                                        </div>                     
+
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Country</label>
+
+                                                            <input type="text" class="form-control" id="address2_country" name="vCountry" ng-model="vCountry2"  disabled> 
+                                                        </div>                       
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading font-bold">
+                                        Other Information
+                                    </div>
+                                    <div class="panel-body">
+
+
+                                        <div class="col-lg-12">
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Resourse Number</label>
+
+                                                    <input type="text" class="form-control" readonly  name="iResourceNumber" ng-model="userprofiledata.iResourceNumber">                       
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Creation Date</label>
+
+                                                    <input type="text" class="form-control" name="dtCreationDate" ng-model="userprofiledata.dtCreationDate" readonly>                        
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12">
+
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">User Status</label>
+                                                    <input type="text" select2-userstatus class="form-control" name="eUserStatus" ng-model="userprofiledata.eUserStatus" required />
+                                                    <!--                                                    <select class="form-control m-b" name="eUserStatus" ng-model="userprofiledata.eUserStatus" required ng-options="statusObj.name as statusObj.name group by statusObj.gr for statusObj in UserStatus">
+                                                                                                            <option value="">Select status</option>
+                                                                                                        </select>                    -->
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label">Time Zone</label>
+
+                                                <select class="form-control m-b" name="vTimeZone" ng-model="userprofiledata.vTimeZone" required>
+                                                    <option  value="-12">(GMT-12:00) International Date Line West</option>
+                                                    <option value="-11">(GMT-11:00) Midway Island, Samoa</option>
+                                                    <option  value="-10">(GMT-10:00) Hawaii</option>
+                                                    <option  value="-9">(GMT-09:00) Alaska</option>
+                                                    <option  value="-8">(GMT-08:00) Pacific Time (US & Canada)</option>
+                                                    <option  value="-8">(GMT-08:00) Tijuana, Baja California</option>
+                                                    <option  value="-7">(GMT-07:00) Arizona</option>
+                                                    <option  value="-7">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
+                                                    <option  value="-7">(GMT-07:00) Mountain Time (US & Canada)</option>
+                                                    <option  value="-6">(GMT-06:00) Central America</option>
+                                                    <option  value="-6">(GMT-06:00) Central Time (US & Canada)</option>
+                                                    <option  value="-6">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
+                                                    <option  value="-6">(GMT-06:00) Saskatchewan</option>
+                                                    <option  value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
+                                                    <option  value="-5">(GMT-05:00) Eastern Time (US & Canada)</option>
+                                                    <option  value="-5">(GMT-05:00) Indiana (East)</option>
+                                                    <option  value="-4">(GMT-04:00) Atlantic Time (Canada)</option>
+                                                    <option  value="-4">(GMT-04:00) Caracas, La Paz</option>
+                                                    <option  value="-4">(GMT-04:00) Manaus</option>
+                                                    <option  value="-4">(GMT-04:00) Santiago</option>
+                                                    <option  value="-3.5">(GMT-03:30) Newfoundland</option>
+                                                    <option  value="-3">(GMT-03:00) Brasilia</option>
+                                                    <option  value="-3">(GMT-03:00) Buenos Aires, Georgetown</option>
+                                                    <option  value="-3">(GMT-03:00) Greenland</option>
+                                                    <option  value="-3">(GMT-03:00) Montevideo</option>
+                                                    <option  value="-2">(GMT-02:00) Mid-Atlantic</option>
+                                                    <option  value="-1">(GMT-01:00) Cape Verde Is.</option>
+                                                    <option  value="-1">(GMT-01:00) Azores</option>
+                                                    <option  value="0">(GMT+00:00) Casablanca, Monrovia, Reykjavik</option>
+                                                    <option  value="0">(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</option>
+                                                    <option  value="1">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                                                    <option  value="1">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+                                                    <option  value="1">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                                    <option  value="1">(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+                                                    <option  value="1">(GMT+01:00) West Central Africa</option>
+                                                    <option  value="2">(GMT+02:00) Amman</option>
+                                                    <option  value="2">(GMT+02:00) Athens, Bucharest, Istanbul</option>
+                                                    <option  value="2">(GMT+02:00) Beirut</option>
+                                                    <option  value="2">(GMT+02:00) Cairo</option>
+                                                    <option  value="2">(GMT+02:00) Harare, Pretoria</option>
+                                                    <option  value="2">(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                                                    <option  value="2">(GMT+02:00) Jerusalem</option>
+                                                    <option  value="2">(GMT+02:00) Minsk</option>
+                                                    <option  value="2">(GMT+02:00) Windhoek</option>
+                                                    <option  value="3">(GMT+03:00) Kuwait, Riyadh, Baghdad</option>
+                                                    <option  value="3">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
+                                                    <option  value="3">(GMT+03:00) Nairobi</option>
+                                                    <option  value="3">(GMT+03:00) Tbilisi</option>
+                                                    <option  value="3.5">(GMT+03:30) Tehran</option>
+                                                    <option  value="4">(GMT+04:00) Abu Dhabi, Muscat</option>
+                                                    <option  value="4">(GMT+04:00) Baku</option>
+                                                    <option  value="4">(GMT+04:00) Yerevan</option>
+                                                    <option  value="4.5">(GMT+04:30) Kabul</option>
+                                                    <option  value="5">(GMT+05:00) Yekaterinburg</option>
+                                                    <option  value="5">(GMT+05:00) Islamabad, Karachi, Tashkent</option>
+                                                    <option  value="5.5">(GMT+05:30) Sri Jayawardenapura</option>
+                                                    <option  value="5.5">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                                                    <option  value="5.75">(GMT+05:45) Kathmandu</option>
+                                                    <option  value="6">(GMT+06:00) Almaty, Novosibirsk</option>
+                                                    <option  value="6">(GMT+06:00) Astana, Dhaka</option>
+                                                    <option  value="6.5">(GMT+06:30) Yangon (Rangoon)</option>
+                                                    <option  value="7">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+                                                    <option  value="7">(GMT+07:00) Krasnoyarsk</option>
+                                                    <option  value="8">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+                                                    <option  value="8">(GMT+08:00) Kuala Lumpur, Singapore</option>
+                                                    <option  value="8">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
+                                                    <option  value="8">(GMT+08:00) Perth</option>
+                                                    <option  value="8">(GMT+08:00) Taipei</option>
+                                                    <option  value="9">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+                                                    <option  value="9">(GMT+09:00) Seoul</option>
+                                                    <option  value="9">(GMT+09:00) Yakutsk</option>
+                                                    <option  value="9.5">(GMT+09:30) Adelaide</option>
+                                                    <option  value="9.5">(GMT+09:30) Darwin</option>
+                                                    <option  value="10">(GMT+10:00) Brisbane</option>
+                                                    <option  value="10">(GMT+10:00) Canberra, Melbourne, Sydney</option>
+                                                    <option  value="10">(GMT+10:00) Hobart</option>
+                                                    <option  value="10">(GMT+10:00) Guam, Port Moresby</option>
+                                                    <option  value="10">(GMT+10:00) Vladivostok</option>
+                                                    <option  value="11">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>
+                                                    <option  value="12">(GMT+12:00) Auckland, Wellington</option>
+                                                    <option  value="12">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
+                                                    <option  value="13">(GMT+13:00) Nuku'alofa</option>
+
+                                                </select>                        
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Company code (rights)</label>
+                                                    <input type="text" class="form-control" name="vComapanyCode" ng-model="userprofiledata.vComapanyCode"  required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Email Template</label>
+
+                                                    <select class="form-control m-b" name="vEmailTemplate" ng-model="userprofiledata.vEmailTemplate">
+                                                        <option>Mail 1</option>
+                                                        <option>Mail 2</option>
+                                                        <option>Mail 3</option>
+                                                        <option>Mail 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+
+
+                                                <div class="col-sm-12">
+
+                                                    <label class="control-label">Memo for Resource</label>
+
+                                                    <textarea class="form-control"  name="tMemo" ng-model="userprofiledata.tMemo"  ></textarea>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--   TAB1 -->
+                                <ul class="pager">
+
+                                    <li class="next">
+                                        <a class="btn btn-primary" ng-click="saveUserProfile('userprofileform');">Save & Next <i class="fa fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+
+                            </form>
+                        </div>
+
+
+                        <div id="w4-tab2" class="tab-pane">
+                            <!--   TAB2 -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Calender</div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-12">
+                                                <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
+<!--                                                <form>
+                                                    <div class="form-group">
+                                                        <input type="text" name="name" required>
+                                                        <input type="text" name="age" required>
+                                                    </div>
+                                                </form>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>											                            
+                            <!--   TAB2 -->
+                            <ul class="pager">
+
+                                <li class="next">
+                                    <a>Save & Next <i class="fa fa-angle-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="w4-tab3" class="tab-pane">
+                            <!--   TAB3 -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Properties</div>
+                                        <div class="panel-body">
+                                            <form id="user-property">
+                                                <div class="col-sm-12">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input select2-property type="text" name="prop" ng-model="propertyData.property_id" class="form-control" ng-change="loadValue(propertyData.property_id, 'property-value')" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3" ng-show="show_value">
+                                                        <div class="form-group">
+                                                            <input id="property-value" type="text" name="values" ng-model="propertyData.value_id" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3" ng-show="show_value">
+                                                        <button type="button" class="btn btn-primary" ng-click="saveProperty('user-property');">OK</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   TAB3 -->
+                        </div>
+
+                        <div id="w4-tab4" class="tab-pane">
+                            <!--   TAB4 -->
+                            <form id="additional_info_form">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Additional Info</div>
+                                            <div class="panel-body">
+
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Addition information</label>
+                                                        <textarea name="add_info" class="form-control" ng-model="additional_info.tComment" required></textarea>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="pager">
+
+                                    <li class="next">
+                                        <a class="btn btn-primary" ng-click="saveAdditionalInfo('additional_info_form');">Save & Next <i class="fa fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <!--   TAB4 -->
+                        </div>
+                        <div id="w4-tab5" class="tab-pane">
+                            <!--   TAB5 -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Price List</div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-12">
+                                                <h1>Comming soon</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   TAB5 -->
+                        </div>
+
+                        <div id="w4-tab6" class="tab-pane">
+                            <!--   TAB6 -->
+                            <form id="payment_form">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Account Information</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Sales TAX ID (VAT number)</label>
+                                                        <input type="text" class="form-control"  name="tax_id" ng-model="payment.tax_id" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Preselected Tax</label>
+                                                        <select class="form-control m-b" name="preselected_tax" ng-model="payment.preselected_tax" required>
+                                                            <option>tax 1(0.25%)</option>
+                                                            <option>tax 1(0.25%)</option>
+                                                            <option>tax 1,2</option>
+                                                        </select>  
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Taxation Type</label>
+                                                        <select class="form-control m-b" name="tax_type" ng-model="payment.tax_type" required>
+                                                            <option>EU without VAT</option>
+                                                            <option>EU with VAT</option>
+                                                            <option>non-taxable</option>
+                                                        </select>  
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Payment Target day(s)</label>
+                                                        <input type="number" class="form-control"  name="target_days" ng-model="payment.target_days" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Grade period for reminder 1</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control"  name="reminder1" ng-model="payment.reminder1" required >
+                                                            <span class="input-group-addon">day(s)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Grade period for reminder 2</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" name="reminder2" ng-model="payment.reminder2" required >
+                                                            <span class="input-group-addon">day(s)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Grade period for reminder 3</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control"  name="reminder3" ng-model="payment.reminder3" required >
+                                                            <span class="input-group-addon">day(s)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Currency</label>
+                                                        <input type="text" select2-currency class="form-control" name="currency" ng-model="payment.currency" required />
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Memo for Payables</label>
+                                                        <textarea name="memos" ng-model="payment.memos" class="form-control" rows="12"></textarea>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Bank</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Payment Method</label>
+                                                        <select class="form-control m-b" name="payment_method" ng-model="bank.payment_method" required>
+                                                            <option>Bank Transfer</option>
+                                                            <option>Paypal</option>
+                                                            <option>Cash</option>
+                                                            <option>Check</option>
+                                                            <option>Credit Card</option>
+                                                            <option>Debit Card</option>
+                                                            <option>Skrill</option>
+                                                        </select> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Bank Name</label>
+                                                        <input type="text" class="form-control"  name="bank_name" ng-model="bank.bank_name" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Bank Code</label>
+                                                        <input type="text" class="form-control"  name="bank_code" ng-model="bank.bank_code" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <input type="text" class="form-control"  name="address" ng-model="bank.address" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Account Number</label>
+                                                        <input type="text" class="form-control" name="tax_id" ng-model="bank.acc_number" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Account Holder</label>
+                                                        <input type="text" class="form-control"  name="holder_name" ng-model="bank.holder_name" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>IBAN</label>
+                                                        <input type="text" class="form-control"  name="iban" ng-model="bank.iban" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>SWIFT/BIC</label>
+                                                        <input type="text" class="form-control"  name="bic" ng-model="bank.bic" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Sort Code</label>
+                                                        <input type="text" class="form-control"  name="sort_code" ng-model="bank.sort_code" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>PayPal address</label>
+                                                        <input type="text" class="form-control"  name="paypal_address" ng-model="bank.paypal_address" required >
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <ul class="pager">
+
+                                    <li class="next">
+                                        <a class="btn btn-primary" ng-click="savePayment('payment_form');">Save & Next <i class="fa fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <!--   TAB6 -->
+                        </div>
+                        <div id="w4-tab7" class="tab-pane">
+                            <!--   TAB7 -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">Task</div>
+                                        <div class="panel-body">
+                                            <div class="col-sm-4">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label>Print resource history</label>
+                                                        <select class="form-control m-b" name="currency" ng-model="resource_history" required>
+                                                            <option>complete Resource history</option>
+                                                            <option>CAD</option>
+                                                            <option>USD</option>
+                                                            <option>GBP</option>
+                                                            <option>NOK</option>
+                                                            <option>BGN</option>
+                                                        </select> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-primary btn-inline" value="OK">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form id="task_form">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading font-bold">Task Form</div>
+                                            <div class="panel-body">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Status</label>
+                                                            <select class="form-control m-b" name="status" ng-model="task.iStatus" required>
+                                                                <option>completed</option>
+                                                                <option>pending</option>
+
+                                                            </select> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Due</label>
+                                                            <input ng-datetimepicker id="due_date" type="text" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Task Type</label>
+                                                            <input type="text" select2-tasktype class="form-control" name="task_type" ng-model="task.vTaskType" required />
+                                                            <!--                                                            <select class="form-control m-b" name="task_type" ng-model="task.vTaskType" required>
+                                                                                                                            <option>complete Resource history</option>
+                                                                                                                            <option>CAD</option>
+                                                            
+                                                                                                                        </select> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label> Contact Persons</label>
+                                                            <input select2-client type="text" name="contact_person" class="form-control" ng-model="task.iContact" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Person Responsible</label>
+                                                            <input select2-user name="person_responsible" type="text" class="form-control" ng-model="task.iPersonResponsible" required/>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Priority</label>
+                                                            <select class="form-control m-b" name="priority" ng-model="task.vPriority" required>
+                                                                <option>Low</option>
+                                                                <option>Normal</option>
+                                                                <option>High</option>
+                                                            </select> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-12 memos">
+                                                        <div class="form-group">
+                                                            <label>Memo</label>
+                                                            <textarea class="form-control" name="memo" ng-model="task.tMemo" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="panel-footer">
+                                                <button class="btn btn-primary" ng-click="saveTask('task_form');">Save</button>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                    <table  class="table m-b-none default footable-loaded footable" >
+                                        <thead>
+                                        <th>#</th>
+                                        <th>Due</th>
+                                        <th>Task Type</th>
+                                        <th>Contact Person</th>
+                                        <th>Person Responsible</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="t in tasklist">
+                                                <td ng-bind="t.iTaskId"></td>
+                                                <td ng-bind="t.vDue"></td>
+                                                <td ng-bind="t.vTaskType"></td>
+                                                <td ng-bind="t.contact_person"></td>
+                                                <td ng-bind="t.person_responsible"></td>
+                                                <td ng-if="t.vPriority=='Low'"><span class="label bg-warning" title="completed">Low</span></td>
+                                                <td ng-if="t.vPriority=='Normal'"><span class="label bg-success" title="completed">Normal</span></td>
+                                                <td ng-if="t.vPriority=='High'"><span class="label bg-danger" title="pending">High</span></td>
+                                                <td ng-bind="t.task_type"></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <!--   TAB7 -->
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+<div class="footer" data-ng-include="'html/footer.html'"></div>
+<script language="JavaScript">
+    var client = new ZeroClipboard(document.getElementById("vPass"));
+
+    client.on("ready", function(readyEvent) {
+
+        client.on("aftercopy", function(event) {
+
+            alert("Copied text to clipboard: " + event.data["text/plain"]);
+        });
+    });
+</script>
